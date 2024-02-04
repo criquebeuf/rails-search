@@ -1,0 +1,35 @@
+<!-- app/views/movies/index.html.erb -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+
+<!-- METHOD 1: SEARCH WITH ACTIVE RECORDS -->
+    <%= form_with url: movies_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Type a keyword"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+
+<!-- METHOD 2: PG SEARCH (RECOMMENDED FOR AIRBNB) -->
+
+<!-- [...] -->
+
+
+
+<!-- DISPLAY MOVIES LIST -->
+      <div id="movies">
+        <% if @movies.any? %>
+          <% @movies.each do |movie| %>
+            <h4><%= movie.title %></h4>
+            <p><%= movie.synopsis %></p>
+          <% end %>
+        <% else %>
+          <em>Sorry, no movies found.</em>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
